@@ -2,7 +2,7 @@
 
 ## Features
 
-**Automatic Rolls**
+**Automatic Rolls:**
 	- Rolls while Engaged or Idle
 	- Automatically pauses rolling while Paralysis, Impairment, or Amnesia are active and resumes once the debuff clears
 	- Clear busts and blocks Fold unless you have a bust or you’ve attempted Fold more than once
