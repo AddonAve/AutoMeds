@@ -8,7 +8,7 @@
 	- Clear busts and blocks Fold unless you have a bust or you’ve attempted Fold more than once
 	- Suspends rolls while **Sneak/Invisible** are active
 
-** Display Overlay:**
+**Display Overlay:**
 	- Shows **Roll 1** and **Roll 2**
 	- Shows **Rolls** on/off
 	- Shows when rolls are suspended by **Sneak/Invisible**
