@@ -22,6 +22,7 @@
 **Hold TP:**
     - Prevents rolls from being used while your TP is at least 1000 (optional)
     - Resumes rolls once your TP drops below 1000
+	- Best used if Tactician's Roll is active
 
 **Roll Tracker:**
 	- Uses **Crooked Cards** with Roll 1 (optional)
