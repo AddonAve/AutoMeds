@@ -46,8 +46,8 @@ List commands: //ameds help
 - //ameds aurasmart on|off - Enable/Disable Smart Aura Block
 - //ameds aurablock [seconds] - Set pause duration [60 - 600]
 - //ameds auradistance [yalms] - Set distance detection for Aura Awareness
-- //ameds auraadd "[target]" [debuff] - Add target for Aura Awareness
-- //ameds aurarem "[target]" [debuff] - Remove target from Aura Awareness
+- //ameds auraadd ["target"] [debuff] - Add target for Aura Awareness
+- //ameds aurarem ["target"] [debuff] - Remove target from Aura Awareness
 - //ameds auralist - List aura sources
 
 ## Notes
