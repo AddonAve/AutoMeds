@@ -3,15 +3,15 @@
 ## Release Notes
 
 **Version 1.8.0**
-- Uses a configurable priority list that handles one debuff at a time
-- Control target lists on every character with one command
+1. Uses a configurable priority list that handles one debuff at a time
+2. Control target lists on every character with one command
 	- Command: //ameds all auraadd "target" [debuff|*]
 	- Command: //ameds all auraremove "target" [debuff|*]
-- Target lists will auto save in a separate file per character
-- Item attempts are only counted when the item actually fires successfully
-- Supports wildcard debuff matching which will block all debuffs of an added target
+3. Target lists will auto save in a separate file per character
+4. Item attempts are only counted when the item actually fires successfully
+5. Supports wildcard debuff matching which will block all debuffs of an added target
 	- Command: //ameds auraadd "target" *
-- Pause duration is announced in chat log every 20 seconds
+6. Pause duration is announced in chat log every 20 seconds
 	- Edit: aura_reminder_interval in [settings]
 		
 ## Features
