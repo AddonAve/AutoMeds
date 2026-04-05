@@ -232,7 +232,6 @@ end
 
 local function clean_chat_line(s)
 s = tostring(s or ''):lower()
--- strip control characters (color codes etc.)
 s = s:gsub('[%c]', '')
 return s
 end
@@ -477,7 +476,7 @@ local player = windower.ffxi.get_player()
 if not player or not player.buffs then return end
 
 local now = os.clock()
--- Clear stale pending item-use (no chat confirmation received)
+-- Clear stale pending item use (no chat confirmation received)
 if pending_item_use and (now - (pending_item_use.issued_at or 0)) > pending_item_timeout then
 pending_item_use = nil
 end
@@ -768,13 +767,25 @@ windower.add_to_chat(2, ' - '..buff)
 end
 end
 
-local function toggle_apply(from_ipc)
-AutoMeds = not AutoMeds
-if from_ipc then
-windower.add_to_chat(2, '[AutoMeds] *all* Auto medicine: '..tostring(AutoMeds))
+local function set_onoff_apply(state, from_ipc)
+local v = tostring(state or ''):lower()
+
+if v == 'on' then
+AutoMeds = true
+elseif v == 'off' then
+AutoMeds = false
 else
-windower.add_to_chat(2, '[AutoMeds] Auto medicine: '..tostring(AutoMeds))
+return false
 end
+
+local state_str = AutoMeds and 'On' or 'Off'
+if from_ipc then
+windower.add_to_chat(2, '[AutoMeds] *all* Auto medicine: '..state_str)
+else
+windower.add_to_chat(2, '[AutoMeds] Auto medicine: '..state_str)
+end
+
+return true
 end
 
 local function sitrack_apply(from_ipc)
@@ -791,11 +802,11 @@ local function aura_apply(value, from_ipc)
 local aura_cfg = get_global_aura()
 local v = norm(value)
 if v == 'on' then
- aura_cfg.enabled = true
+aura_cfg.enabled = true
 elseif v == 'off' then
- aura_cfg.enabled = false
+aura_cfg.enabled = false
 else
- return false
+return false
 end
 settings:save()
 if from_ipc then
@@ -811,11 +822,11 @@ local v = norm(value)
 local aura_cfg = get_global_aura()
 aura_cfg.smart = aura_cfg.smart or {}
 if v == 'on' then
- aura_cfg.smart.enabled = true
+aura_cfg.smart.enabled = true
 elseif v == 'off' then
- aura_cfg.smart.enabled = false
+aura_cfg.smart.enabled = false
 else
- return false
+return false
 end
 settings:save()
 if from_ipc then
@@ -926,8 +937,8 @@ windower.add_to_chat(2, ('[AutoMeds] *all* Removed aura: %s - %s'):format(buff, 
 else
 windower.add_to_chat(2, ('[AutoMeds] *all* Removed aura target: %s'):format(mon))
 end
-elseif sub == 'toggle' then
-toggle_apply(true)
+elseif sub == 'on' or sub == 'off' then
+set_onoff_apply(sub, true)
 elseif sub == 'watch' then
 watch_apply(arg1, true, true)
 elseif sub == 'unwatch' then
@@ -977,9 +988,9 @@ auraremove_apply(mon, buff, false)
 end
 ipc_broadcast(sub, mon, buff or '')
 return
-elseif sub == 'toggle' then
-toggle_apply(false)
-ipc_broadcast('toggle', '', '')
+elseif sub == 'on' or sub == 'off' then
+if not set_onoff_apply(sub, false) then return end
+ipc_broadcast(sub, '', '')
 return
 elseif sub == 'watch' and args[3] then
 local buff = table.concat(args, ' ', 3):lower()
@@ -1046,8 +1057,8 @@ unwatch_apply(buff, false, false)
 elseif cmd == 'list' then
 list_apply(false)
 
-elseif cmd == 'toggle' then
-toggle_apply(false)
+elseif cmd == 'on' or cmd == 'off' then
+set_onoff_apply(cmd, false)
 
 elseif cmd == 'trackalt' then
 settings.alttrack = not settings.alttrack
@@ -1105,7 +1116,7 @@ elseif cmd == 'help' then
 windower.add_to_chat(2, '[AutoMeds] Commands:')
 windower.add_to_chat(2, '//ameds trackalt - Toggle broadcast for debuffs on your alts')
 windower.add_to_chat(2, '//ameds all [command] - Send a command below to all characters')
-windower.add_to_chat(2, '//ameds toggle - Toggle on/off')
+windower.add_to_chat(2, '//ameds [on|off] - Enable/Disable')
 windower.add_to_chat(2, '//ameds watch [buff] - Track a debuff')
 windower.add_to_chat(2, '//ameds unwatch [buff] - Untrack a debuff')
 windower.add_to_chat(2, '//ameds list - Show tracked debuffs')
