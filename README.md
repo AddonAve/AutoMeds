@@ -4,7 +4,7 @@
 
 **Version 1.8.0**
 1. Uses a configurable priority list that handles one debuff at a time
-2. 	- Send commands to other characters that are running the addon
+2. Send commands to all characters that are running the addon
 		- Command: //ameds all [command]
 3. Target lists will auto save in a separate file per character
 4. Item attempts are only counted when the item actually fires successfully
@@ -22,7 +22,7 @@
 **IPC Multi-Character Support**
 	- Broadcast debuff info to alts (trackalt)
 	- Notify when Sneak/Invisible is wearing off (sitrack)
-	- Send commands to other characters that are running the addon
+	- Send commands to all characters that are running the addon
 		- Command: //ameds all [command]
 	- Target lists will auto save in a separate file per character
 		
