@@ -62,7 +62,7 @@ List commands: //ameds help
 
 - //ameds trackalt - Toggle broadcast for debuffs on your alts
 - //ameds all [command] - Send a command below to all characters
-- //ameds toggle - Toggle on/off
+- //ameds [on|off] - Enable/Disable
 - //ameds watch [buff] - Track a debuff
 - //ameds unwatch [buff] - Untrack a debuff
 - //ameds list - Show tracked debuffs
