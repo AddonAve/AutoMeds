@@ -704,7 +704,7 @@ set:remove(nb)
 if set:length() == 0 then aura_rt_map[mon] = nil end
 save_aura_rt_map()
 if not silent then
-windower.add_to_chat(2, ('[AutoMeds] Removed %s -> %s'):format(mon, nb))
+windower.add_to_chat(2, ('[AutoMeds] Removed %s - %s'):format(mon, nb))
 end
 else
 if not silent then
@@ -865,7 +865,7 @@ windower.add_to_chat(2, ('[AutoMeds] %sNo entry for: %s'):format(prefix, nmon))
 return
 end
 local list = set_to_sorted_list(set)
-windower.add_to_chat(2, ('[AutoMeds] %s%s -> %s'):format(prefix, nmon, table.concat(list, ', ')))
+windower.add_to_chat(2, ('[AutoMeds] %s%s - %s'):format(prefix, nmon, table.concat(list, ', ')))
 return
 end
 
@@ -915,14 +915,14 @@ local mon = norm(arg1)
 local buff = norm(arg2)
 if mon == '' or buff == '' then return end
 auraadd_apply(mon, buff, true)
-windower.add_to_chat(2, ('[AutoMeds] *all* Added aura: %s -> %s'):format(buff, mon))
+windower.add_to_chat(2, ('[AutoMeds] *all* Added aura: %s - %s'):format(buff, mon))
 elseif sub == 'auraremove' then
 local mon = norm(arg1)
 local buff = norm(arg2)
 if mon == '' then return end
 auraremove_apply(mon, (buff ~= '' and buff or nil), true)
 if buff ~= '' then
-windower.add_to_chat(2, ('[AutoMeds] *all* Removed aura: %s -> %s'):format(buff, mon))
+windower.add_to_chat(2, ('[AutoMeds] *all* Removed aura: %s - %s'):format(buff, mon))
 else
 windower.add_to_chat(2, ('[AutoMeds] *all* Removed aura target: %s'):format(mon))
 end
