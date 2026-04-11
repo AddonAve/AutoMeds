@@ -536,7 +536,7 @@ local item = debuff_items[buff_name]
 local src = aura_source_nearby_for(buff_name)
 if src then
 if not aura_skip_alerts[buff_name] then
-windower.add_to_chat(2, ('[AutoMeds] Skipping item use for %s due to nearby aura source: %s.'):format(buff_name, src))
+windower.add_to_chat(2, ('[AutoMeds] Skipping item use for %s due to nearby aura source: %s'):format(buff_name, src))
 aura_skip_alerts[buff_name] = true
 end
 active_debuff = buff_name
