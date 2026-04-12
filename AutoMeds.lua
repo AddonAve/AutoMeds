@@ -889,7 +889,7 @@ else
 windower.add_to_chat(2, prefix..'Aura sources:')
 for _, m in ipairs(mons) do
 local buffs = set_to_sorted_list(aura_rt_map[m])
-windower.add_to_chat(2, (' - %s|%s'):format(m, table.concat(buffs, ',')))
+windower.add_to_chat(2, ('- %s|%s'):format(m, table.concat(buffs, ',')))
 end
 end
 end
